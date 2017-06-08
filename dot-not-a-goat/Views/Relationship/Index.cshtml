@@ -1,0 +1,38 @@
+﻿@model IEnumerable<dot_not_a_goat.Models.AspNetUser>
+@{
+    ViewBag.Title = "Relationships";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div> 
+        You are following @Model.Count() other users
+        <br />
+        
+            @foreach (var user in Model)
+            {
+                <div class="following-wrapper">
+                    <div class="you-are-following">
+                        @user.Email
+                        @if (@user.UserBioText != null)
+                        {
+                            <div class="user-bio-text"> @user.UserBioText </div>
+                        }
+                        else
+                        {
+                            <div class="user-bio-text-empty"> No custom Bio yet </div>
+                        }
+
+                        @Html.ActionLink("view user details", "Detail", "User", new { id = user.Id }, null)
+                    </div>
+                </div>
+            }
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model  dot_not_a_goat.Models.UserDetailViewModel
+@{
+    ViewBag.Title = "User Detail";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <div> 
+        @Model.user.Email
+    </div>
+    
+    @foreach(var message in Model.userMessages)
+    {
+        <div class="message-wrapper">
+            <div class="message-date">
+                @message.postedDate.ToString()
+                |
+                @Html.ActionLink("view message w/comments","Detail","Message", new { id = message.messageId},null)
+            </div>
+            <div class="user-message">
+                @Html.Raw(@message.messageText)
+            </div>
+        </div>
+    }
+        
+</body>
+</html>

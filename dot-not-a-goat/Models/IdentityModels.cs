@@ -32,4 +32,13 @@ namespace dot_not_a_goat.Models
             return new ApplicationDbContext();
         }
     }
+
+    
+     public class EntityDbContext : NotGoatEntities
+    {
+        public EntityDbContext() :base () { }
+    }
+    
+
+    
 }

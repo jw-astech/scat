@@ -1,0 +1,43 @@
+﻿@model dot_not_a_goat.Models.MessageDetailViewModel
+@{
+    ViewBag.Title = "Message Detail";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+</head>
+<body>
+    <div class="message-wrapper">
+        <div class="message-date">
+            @Model.message.postedDate.ToString()
+        </div>
+        <div class="user-message">
+            @Model.message.messageText
+        </div>
+    </div>
+
+    <div class="comment-form-wrapper">
+        @using (Html.BeginForm("Add", "Comment", FormMethod.Post))
+            {
+            @Html.TextArea("commentText")
+            <br />
+            <input type="hidden" name="messageId" value="@Model.message.messageId" />
+            <input type="submit" value="Post Comment" />
+        }
+    </div>
+
+    <div class="message-comments-wrapper"> 
+        <div class="message-comments-header">@Model.comments.Count() comments</div>
+        @foreach(var comment in Model.comments)
+        {
+            <div class="comment-wrapper">
+                <div class="comment-text">@comment.commentText</div>
+            </div>
+        }
+    </div>
+</body>
+</html>

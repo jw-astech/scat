@@ -40,7 +40,8 @@ namespace dot_not_a_goat
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
-                 "~/Content/Site.css"));
+                 "~/Content/Site.css",
+                 "~/Content/Follwing.css"));
         }
     }
 }

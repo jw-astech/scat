@@ -1,0 +1,45 @@
+﻿@model  dot_not_a_goat.Models.UserIndexViewModel
+@{
+    ViewBag.Title = "User Home";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="messages-body-wrapper">
+        <div class="messages-body-header">
+           @Model.userMessages.Count() messages from you and @Model.usersFollowed.Count() users you are following
+        </div> 
+
+        <div id="#add-your-message">
+            Add your message below:
+            @using (Html.BeginForm("Add", "Message", FormMethod.Post))
+            {
+                @Html.TextArea("messageText")
+                <br/>
+                <input type="submit" value="Post Message" />
+            }
+
+        </div>
+
+      @foreach (var message in Model.userMessages)
+      {
+        <div class="message-wrapper">
+            <div class="message-date">
+                <!-- will allow html links etc. in here later, so ... -->
+                @Html.Raw(@message.postedDate.ToString())
+            </div>
+            <div class="user-message">
+                @message.messageText
+            </div>
+        </div>
+      }
+    </div>
+</body>
+</html>

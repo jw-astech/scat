@@ -1,0 +1,133 @@
+﻿@model scat.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>External Logins:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>
+        @*
+            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+             
+             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+             
+             Uncomment the following block after you have set up two-factor authentication
+        *@
+        
+            <dt>Phone Number:</dt>
+            <dd>
+                <!-- display phone num -->
+                <form id="updateUserForm">
+                    <input type="text" id="update-phone-text" maxlength="10" name="update-phone-text" value="@Model.PhoneNumber" disabled class="phone-update" onclick="showEditPhone()"/>
+                    <a class="phone-update" id="edit-phone-link" href="#">edit</a>
+                    <a class="phone-update" id="submit-phone-link" href="#">update</a>
+                    <a class="cancel-phone-update" onclick="hideEditPhone()" href="javascript:void(0)">cancel</a>
+                </form>
+
+            </dd>
+        
+        <dt>Two-Factor Authentication:</dt>
+        <dd>
+            <p>
+                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support two-factor authentication.
+            </p>
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+        </dd>
+    </dl>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        wireLinks = function () {
+            $('#edit-phone-link').on('click', function () {
+                showEditPhone();
+            });
+            //submit
+            $('#submit-phone-link').on('click', function () {
+                submitUserUpdate();
+            });
+        };
+
+        showEditPhone = function () {
+            $('#update-phone-text').removeAttr('disabled');
+            $('#edit-phone-link').hide();
+            $('#submit-phone-link').show();
+        };
+
+        hideEditPhone = function () {
+            $('#update-phone-text').attr('disabled', 'disabled');
+            $('#submit-phone-link').hide();
+            $('#edit-phone-link').show();
+            //re-wire
+            $('#edit-phone-link').click(function () {
+                showEditPhone();
+            });
+        };
+
+        submitUserUpdate = function () {
+            var formData = {
+                phoneNumber: $('#update-phone-text').val()
+            }
+            //
+            $.ajax({
+                url:'/api/UpdateUser',
+                method: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: 'application/json'
+            }).then(
+            function () {
+                alert('done');
+            });
+
+        }
+        //initialize by wiring up link
+        wireLinks();
+    </script>
+}

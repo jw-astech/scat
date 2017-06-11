@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
@@ -56,6 +60,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -229,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EncoderWrapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>NotGoatEntities.tt</DependentUpon>

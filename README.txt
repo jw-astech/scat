@@ -16,7 +16,7 @@
 candace@tri.state
 phineas@tri.state
 ferb@tri.state
-doofemshmirtz@tri.state
+doofenshmirtz@tri.state
 perry@owca.gov
 */
 

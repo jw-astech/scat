@@ -1,7 +1,43 @@
-﻿
+﻿/****** Object: Table [dbo].[AspNetUsers] Script Date: 6/12/2017 6:22:19 AM ******/
 
 USE [scat]
 GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[AspNetUsers] (
+    [Id]                   NVARCHAR (128) NOT NULL,
+    [Hometown]             NVARCHAR (MAX) NULL,
+    [Email]                NVARCHAR (256) NULL,
+    [EmailConfirmed]       BIT            NOT NULL,
+    [PasswordHash]         NVARCHAR (MAX) NULL,
+    [SecurityStamp]        NVARCHAR (MAX) NULL,
+    [PhoneNumber]          NVARCHAR (MAX) NULL,
+    [PhoneNumberConfirmed] BIT            NOT NULL,
+    [TwoFactorEnabled]     BIT            NOT NULL,
+    [LockoutEndDateUtc]    DATETIME       NULL,
+    [LockoutEnabled]       BIT            NOT NULL,
+    [AccessFailedCount]    INT            NOT NULL,
+    [UserName]             NVARCHAR (256) NOT NULL,
+    [UserBioText]          NVARCHAR (MAX) NULL
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex]
+    ON [dbo].[AspNetUsers]([UserName] ASC);
+
+
+GO
+ALTER TABLE [dbo].[AspNetUsers]
+    ADD CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC);
+
+
 
 /****** Object: Table [dbo].[__MigrationHistory] Script Date: 6/12/2017 6:19:50 AM ******/
 SET ANSI_NULLS ON
@@ -154,40 +190,6 @@ ALTER TABLE [dbo].[AspNetUserRoles]
 --
 USE [scat]
 GO
-
-/****** Object: Table [dbo].[AspNetUsers] Script Date: 6/12/2017 6:22:19 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[AspNetUsers] (
-    [Id]                   NVARCHAR (128) NOT NULL,
-    [Hometown]             NVARCHAR (MAX) NULL,
-    [Email]                NVARCHAR (256) NULL,
-    [EmailConfirmed]       BIT            NOT NULL,
-    [PasswordHash]         NVARCHAR (MAX) NULL,
-    [SecurityStamp]        NVARCHAR (MAX) NULL,
-    [PhoneNumber]          NVARCHAR (MAX) NULL,
-    [PhoneNumberConfirmed] BIT            NOT NULL,
-    [TwoFactorEnabled]     BIT            NOT NULL,
-    [LockoutEndDateUtc]    DATETIME       NULL,
-    [LockoutEnabled]       BIT            NOT NULL,
-    [AccessFailedCount]    INT            NOT NULL,
-    [UserName]             NVARCHAR (256) NOT NULL,
-    [UserBioText]          NVARCHAR (MAX) NULL
-);
-
-
-GO
-CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex]
-    ON [dbo].[AspNetUsers]([UserName] ASC);
-
-
-GO
-ALTER TABLE [dbo].[AspNetUsers]
-    ADD CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC);
 
 --
 USE [scat]

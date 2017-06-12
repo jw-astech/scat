@@ -15,3 +15,5 @@ ferb@tri.state
 doofemshmirtz@tri.state
 perry@owca.gov
 */
+
+5. Run the application and click around

@@ -20,4 +20,6 @@ doofemshmirtz@tri.state
 perry@owca.gov
 */
 
-5. Run the application and click around
+5. Run the init-table-data.sql script
+
+6. Run the application and click around
